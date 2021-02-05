@@ -32,13 +32,13 @@ client.on('message', message => {
   if (!command) return
 
   if (command.guildOnly && message.channel.type == 'dm') {
-    return message.reply('***Eu não posso executar esse comando no privado!***')
+    return message.channel.send(`${message.author}***, Eu não posso executar esse comando no privado!***`)
   }
 
   if (command.permissions) {
     const authorPerms = message.channel.permissionsFor(message.author)
     if (!authorPerms || !authorPerms.has(command.permissions)) {
-      return message.reply('***Você não tem permissão para executar este comando!***')
+      return message.channel.send(`${message.author}***, Você não tem permissão para executar este comando!***`)
     }
   }
 
@@ -56,7 +56,7 @@ client.on('message', message => {
     command.execute(message, arguments)
   } catch(error) {
     logError(error)
-    message.reply('***Houve um erro ao executar esse comando!***')
+    message.channel.send(`${message.author}***, Houve um erro ao executar esse comando!***`)
   }
 })
 
