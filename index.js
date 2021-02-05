@@ -1,4 +1,4 @@
-const { prefix, token } = require('./config.js')
+const { prefix, token } = require('./config')
 
 const Discord = require('discord.js')
 const fs = require('fs')
